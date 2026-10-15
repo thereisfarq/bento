@@ -15,4 +15,4 @@ sent anywhere — closing the tab clears it all.
 
 Live: https://ahfos.github.io/bento
 
-Made by [ahfos](https://www.ahfos.com).
+Made by [ahfos](https://www.thereisfarq.in).
