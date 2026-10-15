@@ -18,7 +18,7 @@
     --border-subtle: #e5e5e5;
     --accent: #c41e24;
     --muted: #888888;
-    --ui-font: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --ui-font: "Inter Tight", "Inter Tight", Helvetica, Arial, sans-serif;
     --mono-font: "SF Mono", "Menlo", "Consolas", monospace;
     --transition-fast: 180ms ease-out;
     --gap: 10px;
@@ -1570,7 +1570,7 @@
     const text = "AN THEREISFARQ INITIATIVE";
     const letterSpacing = Math.max(1, Math.round(barHeight * 0.024));
     const fontSize = Math.round(barHeight * 0.15);
-    ctx.font = '700 ' + fontSize + 'px "Helvetica Neue", Helvetica, Arial, sans-serif';
+    ctx.font = '700 ' + fontSize + 'px "Inter Tight", Helvetica, Arial, sans-serif';
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#888888";
     let cursorX = xOffset + innerPad;
@@ -1689,7 +1689,7 @@
     let s = '<line x1="' + xOffset + '" y1="' + (y + 0.5) + '" x2="' + (xOffset + width) + '" y2="' + (y + 0.5) + '" stroke="#e5e5e5" stroke-width="1"/>';
     s += '<g transform="translate(' + logoX + ',' + logoY + ') scale(' + logoScale + ')">' +
       LOGO_PATHS.map(p => '<path d="' + p.d + '" fill="' + p.fill + '"' + (p.fillRule ? ' fill-rule="' + p.fillRule + '" clip-rule="' + p.fillRule + '"' : '') + '/>').join("") + '</g>';
-    s += '<text x="' + textX + '" y="' + centerY + '" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="' +
+    s += '<text x="' + textX + '" y="' + centerY + '" font-family="Inter Tight, Helvetica, Arial, sans-serif" font-size="' +
       fontSize + '" font-weight="700" letter-spacing="' + letterSpacing +
       '" fill="#888888" dominant-baseline="middle">' + text + '</text>';
     return s;
@@ -1890,7 +1890,7 @@
     cursorY += logoH + H * 0.018;
 
     const fontSize = Math.round(W * 0.038);
-    ctx.font = '700 ' + fontSize + 'px "Helvetica Neue", Helvetica, Arial, sans-serif';
+    ctx.font = '700 ' + fontSize + 'px "Inter Tight", Helvetica, Arial, sans-serif';
     ctx.textBaseline = "alphabetic";
     const domainText = "thereisfarq.github.io/";
     const pathText = "bento";
@@ -1938,7 +1938,7 @@
     // TypedUp/COLOR's card — no placeholder box, no second logo mark
 
     const footerFontSize = Math.round(W * 0.017);
-    ctx.font = '700 ' + footerFontSize + 'px "Helvetica Neue", Helvetica, Arial, sans-serif';
+    ctx.font = '700 ' + footerFontSize + 'px "Inter Tight", Helvetica, Arial, sans-serif';
     ctx.fillStyle = "#d2d2d2";
     ctx.textAlign = "center";
     ctx.fillText("MADE BY THEREISFARQ", W / 2, H * 0.935);
