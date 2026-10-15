@@ -883,7 +883,7 @@
   // vs the previous tall 212x401), which reads far more cleanly at small
   // sizes — the old mark compressed into an illegible "BE/TO" stack in the
   // header and share card; this one stays a single legible line.
-  const LOGO_VB = { w: 333, h: 256 };
+  const LOGO_VB = { w: 939, h: 491 };
   const LOGO_PATHS = [
     { d: "M26.2523 50.9347H52.839C57.521 50.9347 61.3669 49.8199 64.3767 47.5904C67.3865 45.3609 68.8914 41.738 68.8914 36.7216C68.8914 33.9348 68.3898 31.6495 67.3865 29.8659C66.3832 28.0823 65.0455 26.6889 63.3734 25.6856C61.7013 24.6824 59.7505 24.0135 57.521 23.6791C55.403 23.2332 53.1735 23.0102 50.8325 23.0102H26.2523V50.9347ZM0 2.61035H56.1833C61.8685 2.61035 67.0521 3.11199 71.734 4.11526C76.416 5.11853 80.4291 6.79066 83.7733 9.13163C87.1175 11.3611 89.6815 14.3709 91.4651 18.1611C93.3601 21.9512 94.3077 26.6332 94.3077 32.2069C94.3077 38.2265 92.9142 43.2429 90.1274 47.256C87.452 51.2691 83.4389 54.5576 78.0881 57.1215C85.4454 59.2395 90.9077 62.9739 94.4749 68.3247C98.1535 73.5641 99.9929 79.9181 99.9929 87.3869C99.9929 93.4066 98.8224 98.6459 96.4814 103.105C94.1404 107.452 90.9634 111.02 86.9503 113.806C83.0487 116.593 78.534 118.656 73.4061 119.993C68.3898 121.331 63.2062 122 57.8554 122H0V2.61035ZM26.2523 101.6H54.344C56.9079 101.6 59.3603 101.377 61.7013 100.931C64.0423 100.374 66.1045 99.5377 67.8881 98.4229C69.6717 97.1967 71.0652 95.5803 72.0684 93.5738C73.1832 91.5672 73.7406 89.0033 73.7406 85.882C73.7406 79.7509 72.0127 75.4034 68.557 72.8395C65.1013 70.1641 60.5308 68.8264 54.8456 68.8264H26.2523V101.6Z", fill: "#ffffff" },
     { d: "M102.685 2.61035H191.977V24.6824H128.938V50.2658H186.793V70.6657H128.938V99.9278H193.314V122H102.685V2.61035Z", fill: "#ffffff" },
@@ -1549,19 +1549,26 @@
     });
   }
 
-  const _logoCache = {};
-  function getLogoImage(pxHeight) {
-    if (_logoCache[pxHeight]) return Promise.resolve(_logoCache[pxHeight]);
-    return new Promise((resolve, reject) => {
-      const w = Math.round(pxHeight * (LOGO_VB.w / LOGO_VB.h));
-      const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + pxHeight +
-        '" viewBox="0 0 ' + LOGO_VB.w + ' ' + LOGO_VB.h + '">' +
-        LOGO_PATHS.map(p => '<path d="' + p.d + '" fill="' + p.fill + '"' + (p.fillRule ? ' fill-rule="' + p.fillRule + '" clip-rule="' + p.fillRule + '"' : '') + '/>').join("") + '</svg>';
-      const img = new Image();
-      img.onload = () => { _logoCache[pxHeight] = img; resolve(img); };
-      img.onerror = reject;
-      img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
-    });
+  let _logoImagePromise = null;
+  function getLogoImage() {
+    if (!_logoImagePromise) {
+      _logoImagePromise = new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = "bento-logo.svg";
+      });
+    }
+    return _logoImagePromise;
+  }
+
+  let _logoSvgDataUri = null;
+  async function getLogoSvgDataUri() {
+    if (_logoSvgDataUri) return _logoSvgDataUri;
+    const response = await fetch("bento-logo.svg");
+    if (!response.ok) throw new Error("Could not load BENTO wordmark");
+    _logoSvgDataUri = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(await response.text());
+    return _logoSvgDataUri;
   }
 
   async function drawBrandBar(ctx, xOffset, width, y, barHeight) {
@@ -1574,8 +1581,8 @@
 
     // BENTO mark, bottom-right, sized up so it reads clearly
     const logoH = Math.round(barHeight * 0.58);
-    const logoImg = await getLogoImage(logoH);
-    const logoW = logoImg.width;
+    const logoImg = await getLogoImage();
+    const logoW = Math.round(logoH * (LOGO_VB.w / LOGO_VB.h));
     const logoX = xOffset + width - innerPad - logoW;
     ctx.drawImage(logoImg, logoX, centerY - logoH / 2, logoW, logoH);
 
@@ -1682,30 +1689,22 @@
     if (onProgress) onProgress(1);
   }
 
-  function buildBrandBarSVG(xOffset, width, y, barHeight) {
+  async function buildBrandBarSVG(xOffset, width, y, barHeight) {
     const innerPad = Math.round(barHeight * 0.24);
     const centerY = y + barHeight / 2;
-
-    // BENTO mark, bottom-right, sized up so it reads clearly
     const logoH = Math.round(barHeight * 0.58);
     const logoW = Math.round(logoH * (LOGO_VB.w / LOGO_VB.h));
-    const logoScale = logoH / LOGO_VB.h;
     const logoX = xOffset + width - innerPad - logoW;
     const logoY = centerY - logoH / 2;
-
-    // "An Thereisfarq Initiative", bottom-left
-    const text = "AN THEREISFARQ INITIATIVE";
+    const text = "MADE BY THEREISFARQ";
     const fontSize = Math.round(barHeight * 0.15);
     const letterSpacing = Math.max(1, Math.round(barHeight * 0.024));
     const textX = xOffset + innerPad;
-
-    let s = '<line x1="' + xOffset + '" y1="' + (y + 0.5) + '" x2="' + (xOffset + width) + '" y2="' + (y + 0.5) + '" stroke="#e5e5e5" stroke-width="1"/>';
-    s += '<g transform="translate(' + logoX + ',' + logoY + ') scale(' + logoScale + ')">' +
-      LOGO_PATHS.map(p => '<path d="' + p.d + '" fill="' + p.fill + '"' + (p.fillRule ? ' fill-rule="' + p.fillRule + '" clip-rule="' + p.fillRule + '"' : '') + '/>').join("") + '</g>';
-    s += '<text x="' + textX + '" y="' + centerY + '" font-family="Inter Tight, Helvetica, Arial, sans-serif" font-size="' +
-      fontSize + '" font-weight="700" letter-spacing="' + letterSpacing +
-      '" fill="#888888" dominant-baseline="middle">' + text + '</text>';
-    return s;
+    const logoDataUri = await getLogoSvgDataUri();
+    let out = '<line x1="' + xOffset + '" y1="' + (y + 0.5) + '" x2="' + (xOffset + width) + '" y2="' + (y + 0.5) + '" stroke="#e5c7ca66" stroke-width="1"/>';
+    out += '<image href="' + logoDataUri + '" x="' + logoX + '" y="' + logoY + '" width="' + logoW + '" height="' + logoH + '" preserveAspectRatio="xMidYMid meet"/>';
+    out += '<text x="' + textX + '" y="' + centerY + '" font-family="Inter Tight, Helvetica, Arial, sans-serif" font-size="' + fontSize + '" font-weight="700" letter-spacing="' + letterSpacing + '" fill="#e5c7ca" dominant-baseline="middle">' + text + '</text>';
+    return out;
   }
 
   async function imageToDataURL(item) {
@@ -1752,7 +1751,7 @@
       done++;
       if (onProgress) onProgress(0.08 + (done / total) * 0.62);
     }
-    parts.push(buildBrandBarSVG(PAD, innerWidth, PAD + gridH, BAR_H));
+    parts.push(await buildBrandBarSVG(PAD, innerWidth, PAD + gridH, BAR_H));
     parts.push("</svg>");
     if (onProgress) onProgress(0.85);
 
@@ -1897,8 +1896,9 @@
     let cursorY = H * 0.355;
 
     const logoH = W * 0.115;
-    const logoImg = await getLogoImage(Math.round(logoH));
-    ctx.drawImage(logoImg, (W - logoImg.width) / 2, cursorY, logoImg.width, logoH);
+    const logoImg = await getLogoImage();
+    const logoW = Math.round(logoH * (LOGO_VB.w / LOGO_VB.h));
+    ctx.drawImage(logoImg, (W - logoW) / 2, cursorY, logoW, logoH);
     cursorY += logoH + H * 0.018;
 
     const fontSize = Math.round(W * 0.038);
