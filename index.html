@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#412833">
 <meta name="description" content="Drop images, get an instant, no-crop bento grid. Nothing you upload ever leaves your browser.">
 <title>BENTO — instant image grids</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='11' height='11' x='1' y='1' rx='1.5' fill='%23000'/%3E%3Crect width='11' height='11' x='1' y='12' rx='1.5' fill='%23c41e24'/%3E%3Crect width='11' height='11' x='12' y='1' rx='1.5' fill='%23c41e24'/%3E%3Crect width='11' height='11' x='12' y='12' rx='1.5' fill='%23000'/%3E%3C/svg%3E">
@@ -12,14 +12,14 @@
   [hidden] { display: none !important; }
 
   :root {
-    --bg: #ffffff;
-    --fg: #000000;
-    --border: #cccccc;
-    --border-subtle: #e5e5e5;
-    --accent: #c41e24;
-    --muted: #888888;
+    --bg: #412833;
+    --fg: #ffffff;
+    --border: #e5c7ca;
+    --border-subtle: #e5c7ca66;
+    --accent: #e5c7ca;
+    --muted: #e5c7ca;
     --ui-font: "Inter Tight", "Inter Tight", Helvetica, Arial, sans-serif;
-    --mono-font: "SF Mono", "Menlo", "Consolas", monospace;
+    --mono-font: "Inter Tight", sans-serif;
     --transition-fast: 180ms ease-out;
     --gap: 10px;
     --radius: 10px;
@@ -74,7 +74,7 @@
     padding: 0;
   }
 
-  .logo svg { height: 42px; width: auto; display: block; }
+  .logo img { display: block; width: 5.4rem; height: auto; object-fit: contain; }
 
   .topbar-left {
     display: flex;
@@ -104,7 +104,7 @@
     color: var(--muted);
     transition: background var(--transition-fast), color var(--transition-fast);
   }
-  .topbar-icon-btn:hover { background: #f2f2f2; color: var(--fg); }
+  .topbar-icon-btn:hover { background: #523743; color: var(--fg); }
   .topbar-icon-btn svg { width: 18px; height: 18px; }
   .topbar-icon-btn:disabled { opacity: 0.35; cursor: default; }
   .topbar-icon-btn:disabled:hover { background: none; color: var(--muted); }
@@ -113,7 +113,7 @@
   .info-overlay {
     position: fixed;
     inset: 0;
-    background: #00000055;
+    background: #1c1016aa;
     z-index: 150;
     display: flex;
     align-items: center;
@@ -125,7 +125,7 @@
     position: relative;
     background: var(--bg);
     border-radius: 14px;
-    box-shadow: 0 24px 60px #00000030;
+    box-shadow: 0 24px 60px #1c101655;
     max-width: 28rem;
     width: 100%;
     padding: 2rem 1.75rem 1.75rem;
@@ -143,7 +143,7 @@
     border-radius: 50%;
     color: var(--muted);
   }
-  .info-close:hover { background: #f2f2f2; color: var(--fg); }
+  .info-close:hover { background: #523743; color: var(--fg); }
   .info-close svg { width: 14px; height: 14px; }
 
   .info-card h2 {
@@ -155,7 +155,7 @@
   .info-card p {
     font-size: 0.85rem;
     line-height: 1.6;
-    color: #333;
+    color: var(--fg);
     margin-bottom: 0.9rem;
   }
   .info-card p:last-child { margin-bottom: 0; }
@@ -183,7 +183,7 @@
   .btn-accent {
     color: var(--accent);
   }
-  .btn-accent:hover { background: #c41e2412; }
+  .btn-accent:hover { background: #e5c7ca22; }
 
   .btn-ghost { color: var(--muted); }
 
@@ -205,7 +205,7 @@
 
   .landing-inner { max-width: 26rem; width: 100%; }
 
-  .landing-mark img { height: 7.5rem; width: auto; max-width: 100%; margin: 0 auto 1.8rem; display: block; filter: invert(1); }
+  .landing-mark { width: min(100%, 19rem); aspect-ratio: 939 / 491; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; } .landing-mark img { display:block; width:min(100%,19rem); height:auto; max-height:8rem; object-fit:contain; margin:0 auto; } .landing-inner { width:min(100%,28rem); margin:0 auto; display:flex; flex-direction:column; align-items:center; justify-content:center; } .landing-tagline { max-width:25rem; margin:0 auto 1.8rem; color:var(--muted); font-size:.95rem; line-height:1.55; text-align:center; } .landing .btn-primary { background:var(--accent); border-color:var(--accent); color:var(--hover-ink); } .landing .btn-primary:hover { background:#f1dadd; border-color:#f1dadd; transform:translateY(-1px); } .landing .btn-lg { border-radius:8px; padding:.85rem 1.8rem; font-weight:700; }
 
   .landing-tagline {
     font-size: 0.92rem;
@@ -239,7 +239,7 @@
 
   .dropzone:hover, .dropzone.drag-over {
     border-color: var(--accent);
-    background: #c41e2408;
+    background: #e5c7ca18;
   }
 
   .dropzone h1 {
@@ -420,7 +420,7 @@
     height: 26px;
     padding: 0 0.55rem;
     border-radius: 6px;
-    background: #ffffffee;
+    background: #523743;
     color: var(--fg);
     font-size: 0.68rem;
     font-weight: 700;
@@ -430,7 +430,7 @@
     transition: background var(--transition-fast);
     border: 1px solid transparent;
   }
-  .chip:hover { background: #ffffff; }
+  .chip:hover { background: var(--bg); }
   .chip.is-locked { border-color: var(--accent); color: var(--accent); }
 
   .icon-btn {
@@ -444,7 +444,7 @@
     color: var(--fg);
     transition: background var(--transition-fast);
   }
-  .icon-btn:hover { background: #ffffff; }
+  .icon-btn:hover { background: var(--accent); color: var(--hover-ink); }
   .icon-btn.remove:hover { color: var(--accent); }
   .icon-btn svg { width: 14px; height: 14px; }
 
@@ -466,7 +466,7 @@
   .preview-overlay {
     position: fixed;
     inset: 0;
-    background: #fafafa;
+    background: #412833;
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -497,7 +497,7 @@
 
   .preview-card {
     background: var(--bg);
-    box-shadow: 0 24px 60px #00000014;
+    box-shadow: 0 24px 60px #1c101655;
     border-radius: 12px;
     overflow: hidden;
     height: fit-content;
@@ -528,7 +528,7 @@
     background: #ffffff;
     border-top: 1px solid var(--border-subtle);
   }
-  .brand-bar-logo { height: 40px; width: auto; display: block; flex-shrink: 0; }
+  .brand-bar-logo { height:30px; max-width:7rem; width:auto; display:block; flex-shrink:0; }
   .brand-bar-text {
     font-size: 0.7rem;
     font-weight: 700;
@@ -595,7 +595,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: #00000012;
+    background: #e5c7ca22;
     z-index: 300;
   }
   .export-progress-bar {
@@ -646,13 +646,13 @@
   }
   .share-story-spacer-top { flex: 0.85 0 0; }
   .share-story-brand { flex: none; text-align: center; }
-  .share-story-logo svg { height: 26px; width: auto; display: block; margin: 0 auto 0.55rem; }
+  .share-story-logo img { display:block; width:min(100%,7.5rem); height:auto; margin:0 auto .8rem; }
   .share-story-link {
     text-align: center;
     font-size: 0.66rem;
     font-weight: 700;
   }
-  .share-story-link .domain { color: #a1a1a1; }
+  .share-story-link .domain { color: var(--muted); }
   .share-story-link .path { color: var(--accent); }
   .share-story-content {
     position: relative;
@@ -676,7 +676,7 @@
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #d2d2d2;
+    color: #e5c7ca66;
   }
   .share-story-btn {
     width: min(70vw, 270px);
@@ -685,11 +685,11 @@
     font-weight: 700;
     padding: 0.85rem 1.6rem;
     border-radius: 999px;
-    background: #f4cfcf;
-    color: #7a1418;
+    background: var(--accent);
+    color: #412833;
     transition: background var(--transition-fast), opacity var(--transition-fast);
   }
-  .share-story-btn:hover { background: #eebcbc; }
+  .share-story-btn:hover { background: #f1dadd; }
   .share-story-btn:disabled { opacity: 0.55; cursor: default; }
   .share-story-close {
     font-size: 0.68rem;
@@ -706,15 +706,7 @@
 
   <header class="topbar">
     <div class="topbar-left">
-      <button class="logo" id="logoHomeBtn" type="button" aria-label="BENTO home">
-        <svg viewBox="0 0 333 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-          <path d="M26.2523 50.9347H52.839C57.521 50.9347 61.3669 49.8199 64.3767 47.5904C67.3865 45.3609 68.8914 41.738 68.8914 36.7216C68.8914 33.9348 68.3898 31.6495 67.3865 29.8659C66.3832 28.0823 65.0455 26.6889 63.3734 25.6856C61.7013 24.6824 59.7505 24.0135 57.521 23.6791C55.403 23.2332 53.1735 23.0102 50.8325 23.0102H26.2523V50.9347ZM0 2.61035H56.1833C61.8685 2.61035 67.0521 3.11199 71.734 4.11526C76.416 5.11853 80.4291 6.79066 83.7733 9.13163C87.1175 11.3611 89.6815 14.3709 91.4651 18.1611C93.3601 21.9512 94.3077 26.6332 94.3077 32.2069C94.3077 38.2265 92.9142 43.2429 90.1274 47.256C87.452 51.2691 83.4389 54.5576 78.0881 57.1215C85.4454 59.2395 90.9077 62.9739 94.4749 68.3247C98.1535 73.5641 99.9929 79.9181 99.9929 87.3869C99.9929 93.4066 98.8224 98.6459 96.4814 103.105C94.1404 107.452 90.9634 111.02 86.9503 113.806C83.0487 116.593 78.534 118.656 73.4061 119.993C68.3898 121.331 63.2062 122 57.8554 122H0V2.61035ZM26.2523 101.6H54.344C56.9079 101.6 59.3603 101.377 61.7013 100.931C64.0423 100.374 66.1045 99.5377 67.8881 98.4229C69.6717 97.1967 71.0652 95.5803 72.0684 93.5738C73.1832 91.5672 73.7406 89.0033 73.7406 85.882C73.7406 79.7509 72.0127 75.4034 68.557 72.8395C65.1013 70.1641 60.5308 68.8264 54.8456 68.8264H26.2523V101.6Z" fill="currentColor"/>
-          <path d="M102.685 2.61035H191.977V24.6824H128.938V50.2658H186.793V70.6657H128.938V99.9278H193.314V122H102.685V2.61035Z" fill="currentColor"/>
-          <path d="M36.4191 158.682H0.635742V136.61H98.4549V158.682H62.6714V256H36.4191V158.682Z" fill="currentColor"/>
-          <path d="M315.25 0C337.19 0 337.016 35.4005 321.17 76.0327C305.325 116.665 289.479 128 268.584 128C252.391 128 245.077 112.828 241.943 95.9128C238.112 74.812 240.724 51.0954 240.724 51.0954H238.809C238.809 51.0954 236.197 74.812 240.028 95.9128C236.197 112.828 228.187 127.826 214.78 127.826C190.054 127.826 196.845 88.4142 204.506 61.9074C212.342 35.4005 228.187 0.871933 257.092 0.871933C272.067 0.871933 277.639 19.7057 277.291 41.6785C271.022 59.1172 266.843 79.8692 266.495 99.5749H268.236C268.759 81.0899 272.415 61.733 277.987 45.1662C277.987 44.9918 278.161 44.9918 278.161 44.8174C278.51 43.7711 278.858 42.7248 279.206 41.6785C288.086 17.6131 301.146 0 315.25 0Z" fill="#c41e24"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M273.73 137.005C306.237 137.416 332.462 163.896 332.462 196.5C332.462 229.104 306.237 255.584 273.73 255.995L272.962 256H150.962C118.101 256 91.4619 229.361 91.4619 196.5C91.4619 163.639 118.101 137 150.962 137H272.962L273.73 137.005ZM150.962 164C133.013 164 118.462 178.551 118.462 196.5C118.462 214.449 133.013 229 150.962 229H272.962C290.911 229 305.462 214.449 305.462 196.5C305.462 178.551 290.911 164 272.962 164H150.962Z" fill="currentColor"/>
-        </svg>
-      </button>
+      <button class="logo" id="logoHomeBtn" type="button" aria-label="BENTO home"><img src="bento-logo.svg" alt="BENTO" /></button>
       <button class="topbar-icon-btn" id="infoBtn" type="button" aria-label="How bento grids work">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.25"/><path d="M12 11v5.5" stroke-linecap="round"/><circle cx="12" cy="7.6" r="0.9" fill="currentColor" stroke="none"/></svg>
       </button>
@@ -870,10 +862,10 @@
   // header and share card; this one stays a single legible line.
   const LOGO_VB = { w: 333, h: 256 };
   const LOGO_PATHS = [
-    { d: "M26.2523 50.9347H52.839C57.521 50.9347 61.3669 49.8199 64.3767 47.5904C67.3865 45.3609 68.8914 41.738 68.8914 36.7216C68.8914 33.9348 68.3898 31.6495 67.3865 29.8659C66.3832 28.0823 65.0455 26.6889 63.3734 25.6856C61.7013 24.6824 59.7505 24.0135 57.521 23.6791C55.403 23.2332 53.1735 23.0102 50.8325 23.0102H26.2523V50.9347ZM0 2.61035H56.1833C61.8685 2.61035 67.0521 3.11199 71.734 4.11526C76.416 5.11853 80.4291 6.79066 83.7733 9.13163C87.1175 11.3611 89.6815 14.3709 91.4651 18.1611C93.3601 21.9512 94.3077 26.6332 94.3077 32.2069C94.3077 38.2265 92.9142 43.2429 90.1274 47.256C87.452 51.2691 83.4389 54.5576 78.0881 57.1215C85.4454 59.2395 90.9077 62.9739 94.4749 68.3247C98.1535 73.5641 99.9929 79.9181 99.9929 87.3869C99.9929 93.4066 98.8224 98.6459 96.4814 103.105C94.1404 107.452 90.9634 111.02 86.9503 113.806C83.0487 116.593 78.534 118.656 73.4061 119.993C68.3898 121.331 63.2062 122 57.8554 122H0V2.61035ZM26.2523 101.6H54.344C56.9079 101.6 59.3603 101.377 61.7013 100.931C64.0423 100.374 66.1045 99.5377 67.8881 98.4229C69.6717 97.1967 71.0652 95.5803 72.0684 93.5738C73.1832 91.5672 73.7406 89.0033 73.7406 85.882C73.7406 79.7509 72.0127 75.4034 68.557 72.8395C65.1013 70.1641 60.5308 68.8264 54.8456 68.8264H26.2523V101.6Z", fill: "#000000" },
+    { d: "M26.2523 50.9347H52.839C57.521 50.9347 61.3669 49.8199 64.3767 47.5904C67.3865 45.3609 68.8914 41.738 68.8914 36.7216C68.8914 33.9348 68.3898 31.6495 67.3865 29.8659C66.3832 28.0823 65.0455 26.6889 63.3734 25.6856C61.7013 24.6824 59.7505 24.0135 57.521 23.6791C55.403 23.2332 53.1735 23.0102 50.8325 23.0102H26.2523V50.9347ZM0 2.61035H56.1833C61.8685 2.61035 67.0521 3.11199 71.734 4.11526C76.416 5.11853 80.4291 6.79066 83.7733 9.13163C87.1175 11.3611 89.6815 14.3709 91.4651 18.1611C93.3601 21.9512 94.3077 26.6332 94.3077 32.2069C94.3077 38.2265 92.9142 43.2429 90.1274 47.256C87.452 51.2691 83.4389 54.5576 78.0881 57.1215C85.4454 59.2395 90.9077 62.9739 94.4749 68.3247C98.1535 73.5641 99.9929 79.9181 99.9929 87.3869C99.9929 93.4066 98.8224 98.6459 96.4814 103.105C94.1404 107.452 90.9634 111.02 86.9503 113.806C83.0487 116.593 78.534 118.656 73.4061 119.993C68.3898 121.331 63.2062 122 57.8554 122H0V2.61035ZM26.2523 101.6H54.344C56.9079 101.6 59.3603 101.377 61.7013 100.931C64.0423 100.374 66.1045 99.5377 67.8881 98.4229C69.6717 97.1967 71.0652 95.5803 72.0684 93.5738C73.1832 91.5672 73.7406 89.0033 73.7406 85.882C73.7406 79.7509 72.0127 75.4034 68.557 72.8395C65.1013 70.1641 60.5308 68.8264 54.8456 68.8264H26.2523V101.6Z", fill: "#ffffff" },
     { d: "M102.685 2.61035H191.977V24.6824H128.938V50.2658H186.793V70.6657H128.938V99.9278H193.314V122H102.685V2.61035Z", fill: "#000000" },
     { d: "M36.4191 158.682H0.635742V136.61H98.4549V158.682H62.6714V256H36.4191V158.682Z", fill: "#000000" },
-    { d: "M315.25 0C337.19 0 337.016 35.4005 321.17 76.0327C305.325 116.665 289.479 128 268.584 128C252.391 128 245.077 112.828 241.943 95.9128C238.112 74.812 240.724 51.0954 240.724 51.0954H238.809C238.809 51.0954 236.197 74.812 240.028 95.9128C236.197 112.828 228.187 127.826 214.78 127.826C190.054 127.826 196.845 88.4142 204.506 61.9074C212.342 35.4005 228.187 0.871933 257.092 0.871933C272.067 0.871933 277.639 19.7057 277.291 41.6785C271.022 59.1172 266.843 79.8692 266.495 99.5749H268.236C268.759 81.0899 272.415 61.733 277.987 45.1662C277.987 44.9918 278.161 44.9918 278.161 44.8174C278.51 43.7711 278.858 42.7248 279.206 41.6785C288.086 17.6131 301.146 0 315.25 0Z", fill: "#c41e24" },
+    { d: "M315.25 0C337.19 0 337.016 35.4005 321.17 76.0327C305.325 116.665 289.479 128 268.584 128C252.391 128 245.077 112.828 241.943 95.9128C238.112 74.812 240.724 51.0954 240.724 51.0954H238.809C238.809 51.0954 236.197 74.812 240.028 95.9128C236.197 112.828 228.187 127.826 214.78 127.826C190.054 127.826 196.845 88.4142 204.506 61.9074C212.342 35.4005 228.187 0.871933 257.092 0.871933C272.067 0.871933 277.639 19.7057 277.291 41.6785C271.022 59.1172 266.843 79.8692 266.495 99.5749H268.236C268.759 81.0899 272.415 61.733 277.987 45.1662C277.987 44.9918 278.161 44.9918 278.161 44.8174C278.51 43.7711 278.858 42.7248 279.206 41.6785C288.086 17.6131 301.146 0 315.25 0Z", fill: "#e5c7ca" },
     { d: "M273.73 137.005C306.237 137.416 332.462 163.896 332.462 196.5C332.462 229.104 306.237 255.584 273.73 255.995L272.962 256H150.962C118.101 256 91.4619 229.361 91.4619 196.5C91.4619 163.639 118.101 137 150.962 137H272.962L273.73 137.005ZM150.962 164C133.013 164 118.462 178.551 118.462 196.5C118.462 214.449 133.013 229 150.962 229H272.962C290.911 229 305.462 214.449 305.462 196.5C305.462 178.551 290.911 164 272.962 164H150.962Z", fill: "#000000", fillRule: "evenodd" },
   ];
 
@@ -1496,9 +1488,7 @@
     bar.style.top = (PAD + layout.canvasHeight) + "px";
     bar.style.width = innerWidth + "px";
     bar.style.height = BAR_H + "px";
-    bar.innerHTML = '<span class="brand-bar-text">An Thereisfarq Initiative</span><svg class="brand-bar-logo" viewBox="0 0 333 256">' +
-      LOGO_PATHS.map(p => '<path d="' + p.d + '" fill="' + p.fill + '"' + (p.fillRule ? ' fill-rule="' + p.fillRule + '" clip-rule="' + p.fillRule + '"' : '') + '/>').join("") +
-      '</svg>';
+    bar.innerHTML = '<span class="brand-bar-text">Made by thereisfarq</span><img class="brand-bar-logo" src="bento-logo.svg" alt="BENTO" />';
     els.previewCanvas.appendChild(bar);
   }
 
@@ -1552,7 +1542,7 @@
   }
 
   async function drawBrandBar(ctx, xOffset, width, y, barHeight) {
-    ctx.strokeStyle = "#e5e5e5";
+    ctx.strokeStyle = "#e5c7ca66";
     ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(xOffset, y + 0.5); ctx.lineTo(xOffset + width, y + 0.5); ctx.stroke();
 
@@ -1572,7 +1562,7 @@
     const fontSize = Math.round(barHeight * 0.15);
     ctx.font = '700 ' + fontSize + 'px "Inter Tight", Helvetica, Arial, sans-serif';
     ctx.textBaseline = "middle";
-    ctx.fillStyle = "#888888";
+    ctx.fillStyle = "#e5c7ca";
     let cursorX = xOffset + innerPad;
     for (const ch of text) {
       ctx.fillText(ch, cursorX, centerY + 1);
@@ -1626,7 +1616,7 @@
     canvas.width = Math.round(outerWidth * scale);
     canvas.height = Math.round(totalH * scale);
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#412833";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const total = layout.placed.length || 1;
@@ -1720,7 +1710,7 @@
 
     const parts = [];
     parts.push('<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '">');
-    parts.push('<rect width="100%" height="100%" fill="#ffffff"/>');
+    parts.push('<rect width="100%" height="100%" fill="#412833"/>');
     const total = layout.placed.length || 1;
     let done = 0;
     for (const p of layout.placed) {
@@ -1822,8 +1812,7 @@
 
     const logoWrap = document.createElement("div");
     logoWrap.className = "share-story-logo";
-    logoWrap.innerHTML = '<svg viewBox="0 0 333 256" xmlns="http://www.w3.org/2000/svg">' +
-      LOGO_PATHS.map(p => '<path d="' + p.d + '" fill="' + p.fill + '"' + (p.fillRule ? ' fill-rule="' + p.fillRule + '" clip-rule="' + p.fillRule + '"' : '') + '/>').join("") + '</svg>';
+    logoWrap.innerHTML = '<img src="bento-logo.svg" alt="BENTO" />';
     brand.appendChild(logoWrap);
 
     const link = document.createElement("div");
@@ -1878,7 +1867,7 @@
     const canvas = document.createElement("canvas");
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#412833";
     ctx.fillRect(0, 0, W, H);
 
     const padX = W * 0.11;
@@ -1898,10 +1887,10 @@
     const pathW = ctx.measureText(pathText).width;
     let tx = (W - (domainW + pathW)) / 2;
     const ty = cursorY + fontSize * 0.78;
-    ctx.fillStyle = "#a1a1a1";
+    ctx.fillStyle = "#e5c7ca";
     ctx.fillText(domainText, tx, ty);
     tx += domainW;
-    ctx.fillStyle = "#c41e24";
+    ctx.fillStyle = "#e5c7ca";
     ctx.fillText(pathText, tx, ty);
     cursorY = ty + H * 0.03;
 
@@ -1939,7 +1928,7 @@
 
     const footerFontSize = Math.round(W * 0.017);
     ctx.font = '700 ' + footerFontSize + 'px "Inter Tight", Helvetica, Arial, sans-serif';
-    ctx.fillStyle = "#d2d2d2";
+    ctx.fillStyle = "#e5c7ca66";
     ctx.textAlign = "center";
     ctx.fillText("MADE BY THEREISFARQ", W / 2, H * 0.935);
     ctx.textAlign = "left";
