@@ -801,7 +801,7 @@
 
   <footer>
     <p class="footer-note">Nothing you upload is ever sent anywhere or stored. Everything happens in your browser and disappears when you leave this page.</p>
-    <a class="footer-credit" href="https://www.thereisfarq.in" target="_blank" rel="noopener">Made by ahfos</a>
+    <a class="footer-credit" href="https://www.thereisfarq.in" target="_blank" rel="noopener">Made by thereisfarq</a>
   </footer>
 
 </div>
@@ -1502,7 +1502,7 @@
     bar.style.top = (PAD + layout.canvasHeight) + "px";
     bar.style.width = innerWidth + "px";
     bar.style.height = BAR_H + "px";
-    bar.innerHTML = '<span class="brand-bar-text">An Ahfos Initiative</span><svg class="brand-bar-logo" viewBox="0 0 333 256">' +
+    bar.innerHTML = '<span class="brand-bar-text">An Thereisfarq Initiative</span><svg class="brand-bar-logo" viewBox="0 0 333 256">' +
       LOGO_PATHS.map(p => '<path d="' + p.d + '" fill="' + p.fill + '"' + (p.fillRule ? ' fill-rule="' + p.fillRule + '" clip-rule="' + p.fillRule + '"' : '') + '/>').join("") +
       '</svg>';
     els.previewCanvas.appendChild(bar);
@@ -1530,7 +1530,7 @@
      match its forced shape — exactly what the editor/preview
      already show for that tile via object-fit: cover. Every
      export bakes in a bottom brand bar with the BENTO mark +
-     "An Ahfos Initiative".
+     "An Thereisfarq Initiative".
      ========================================================= */
   function getLoadedImage(item) {
     if (item._img && item._img.complete && item._img.naturalWidth) return Promise.resolve(item._img);
@@ -1572,8 +1572,8 @@
     const logoX = xOffset + width - innerPad - logoW;
     ctx.drawImage(logoImg, logoX, centerY - logoH / 2, logoW, logoH);
 
-    // "An Ahfos Initiative", bottom-left
-    const text = "AN AHFOS INITIATIVE";
+    // "An Thereisfarq Initiative", bottom-left
+    const text = "AN THEREISFARQ INITIATIVE";
     const letterSpacing = Math.max(1, Math.round(barHeight * 0.024));
     const fontSize = Math.round(barHeight * 0.15);
     ctx.font = '700 ' + fontSize + 'px "Helvetica Neue", Helvetica, Arial, sans-serif';
@@ -1686,8 +1686,8 @@
     const logoX = xOffset + width - innerPad - logoW;
     const logoY = centerY - logoH / 2;
 
-    // "An Ahfos Initiative", bottom-left
-    const text = "AN AHFOS INITIATIVE";
+    // "An Thereisfarq Initiative", bottom-left
+    const text = "AN THEREISFARQ INITIATIVE";
     const fontSize = Math.round(barHeight * 0.15);
     const letterSpacing = Math.max(1, Math.round(barHeight * 0.024));
     const textX = xOffset + innerPad;
@@ -1809,7 +1809,7 @@
   /* =========================================================
      SHARE TO STORY — a vertical story card (matching TypedUp /
      COLOR's pattern): logo, hyperlink-styled site path, a live
-     snapshot of the current grid, "Made by Ahfos" footer. The
+     snapshot of the current grid, "Made by Thereisfarq" footer. The
      DOM version below drives the on-screen preview; a matching
      canvas version (buildShareStoryCanvas) renders the same card
      for the actual Web Share / download action.
@@ -1834,7 +1834,7 @@
 
     const link = document.createElement("div");
     link.className = "share-story-link";
-    link.innerHTML = '<span class="domain">ahfos.github.io/</span><span class="path">bento</span>';
+    link.innerHTML = '<span class="domain">thereisfarq.github.io/</span><span class="path">bento</span>';
     brand.appendChild(link);
     preview.appendChild(brand);
 
@@ -1869,7 +1869,7 @@
 
     const footer = document.createElement("div");
     footer.className = "share-story-footer";
-    footer.textContent = "MADE BY AHFOS";
+    footer.textContent = "MADE BY THEREISFARQ";
     preview.appendChild(footer);
   }
 
@@ -1877,7 +1877,7 @@
   // gets shared/downloaded, not a mockup of an app card, so it should look
   // like TypedUp/COLOR's actual output: plain white edge to edge, the
   // logo+link cluster sitting in open space roughly a third of the way
-  // down (not pinned to the top), and "MADE BY AHFOS" resting near the
+  // down (not pinned to the top), and "MADE BY THEREISFARQ" resting near the
   // bottom with real margin under it.
   async function buildShareStoryCanvas(onProgress) {
     const W = 1080, H = 1920;
@@ -1898,7 +1898,7 @@
     const fontSize = Math.round(W * 0.038);
     ctx.font = '700 ' + fontSize + 'px "Helvetica Neue", Helvetica, Arial, sans-serif';
     ctx.textBaseline = "alphabetic";
-    const domainText = "ahfos.github.io/";
+    const domainText = "thereisfarq.github.io/";
     const pathText = "bento";
     const domainW = ctx.measureText(domainText).width;
     const pathW = ctx.measureText(pathText).width;
@@ -1947,7 +1947,7 @@
     ctx.font = '700 ' + footerFontSize + 'px "Helvetica Neue", Helvetica, Arial, sans-serif';
     ctx.fillStyle = "#d2d2d2";
     ctx.textAlign = "center";
-    ctx.fillText("MADE BY AHFOS", W / 2, H * 0.935);
+    ctx.fillText("MADE BY THEREISFARQ", W / 2, H * 0.935);
     ctx.textAlign = "left";
 
     return canvas;
