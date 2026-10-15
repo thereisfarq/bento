@@ -13,6 +13,6 @@ Everything runs in the browser: reading files, classifying aspect ratios,
 laying out the grid, cropping for export. Nothing is uploaded, stored, or
 sent anywhere — closing the tab clears it all.
 
-Live: https://ahfos.github.io/bento
+Live: https://thereisfarq.github.io/bento
 
-Made by [ahfos](https://www.thereisfarq.in).
+Made by [thereisfarq](https://www.thereisfarq.in).
